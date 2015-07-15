@@ -15,7 +15,7 @@ class ViewController: UIViewController , UICollectionViewDataSource,UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let names = ["Swift", "Tommy emannual","somebody"]
         
         let contents = ["Swift提供了類似 C 語言的流程控制結構，包括可以多次執行任務的for和while迴圈，基於特定條件選擇執行不同程式碼分支的if和switch語句，還有控制流程程跳轉到其他程式碼的break和continue語句。",

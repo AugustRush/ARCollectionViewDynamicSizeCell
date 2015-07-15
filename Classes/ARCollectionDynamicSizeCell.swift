@@ -22,9 +22,25 @@
 
 import UIKit
 
-private var templeCells:[String:AnyObject] = Dictionary()
-
 extension UICollectionView{
+    private struct associateKey{
+        static var templeCellsKey = "templeCells"
+    }
+    
+    private var templeCells : [String:AnyObject] {
+        get{
+            var dict = objc_getAssociatedObject(self, &associateKey.templeCellsKey) as? [String:AnyObject]
+            if dict == nil {
+                dict = Dictionary()
+                objc_setAssociatedObject(self, &associateKey.templeCellsKey, dict!, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+            }
+            return dict!
+        }
+        
+        set{
+            objc_setAssociatedObject(self, &associateKey.templeCellsKey, newValue, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        }
+    }
     
     func ar_dynamicSize(reuseIdentifier:String,indexPath:NSIndexPath,configuration:((AnyObject)->Void),fixedWidth:CGFloat = 0,fixedHeight:CGFloat = 0) -> CGSize {
         let cell = templeCell(reuseIdentifier) as! UICollectionViewCell
@@ -51,7 +67,7 @@ extension UICollectionView{
     }
     
     
-    func templeCell(reuseIdentifier:String) -> AnyObject {
+     private func templeCell(reuseIdentifier:String) -> AnyObject {
         var cell: AnyObject? = templeCells[reuseIdentifier]
         if cell == nil{
             let cellNibDict = self.valueForKey("_cellNibDict") as! [String:AnyObject]
@@ -60,5 +76,15 @@ extension UICollectionView{
             templeCells[reuseIdentifier] = cell
         }
         return cell!
+    }
+    
+    private func templeCellsDict() -> [String:AnyObject]{
+        let selector = "templeCellsDict"
+        var dict = objc_getAssociatedObject(self, selector) as? [String:AnyObject]
+        if dict == nil {
+            dict = Dictionary()
+            objc_setAssociatedObject(self, selector, dict, UInt(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+        }
+        return dict!
     }
 }
