@@ -2,6 +2,10 @@
 An simple extension for caculating autolayout UICollectionViewCell size. Use for swift.
 Objective-c version: 'https://github.com/AugustRush/UICollectionView-ARDynamicHeightLayoutCell';
 
+## Demo GIF
+
+<img src="https://github.com/AugustRush/ARCollectionViewDynamicSizeCell/blob/master/gif1.gif" width="320">
+
 ## Support
 * prototype cell in storyboard
 
@@ -42,6 +46,11 @@ Objective-c version: 'https://github.com/AugustRush/UICollectionView-ARDynamicHe
     }
 
 ```
+
+## TO DO
+
+* Cache for cell size
+* PreCache if needed
 
 ## License
 
