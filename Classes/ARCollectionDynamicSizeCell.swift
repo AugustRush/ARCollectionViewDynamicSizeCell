@@ -28,6 +28,7 @@ extension UICollectionView{
     
     func ar_dynamicSize(reuseIdentifier:String,indexPath:NSIndexPath,configuration:((AnyObject)->Void),fixedWidth:CGFloat = 0,fixedHeight:CGFloat = 0) -> CGSize {
         let cell = templeCell(reuseIdentifier) as! UICollectionViewCell
+        cell.prepareForReuse()
         configuration(cell)
         if fixedWidth > 0 && fixedHeight > 0{
             return CGSizeMake(fixedWidth, fixedHeight)
